@@ -1,0 +1,32 @@
+{
+  "name": "juniior1993/totalappsv02",
+  "description": "Gerenciamento de projetos",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Darci Schmidt Hort Junior",
+      "email": "juniior1993@gmail.com"
+    }
+  ],
+  "config": {
+    "vendor-lib": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "Source\\": "source/"
+    },
+    "files": [
+      "source/Boot/Config.php",
+      "source/Boot/Utils.php"
+    ]
+  },
+  "require": {
+    "php": "^7.4",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "coffeecode/router": "1.0.*",
+    "coffeecode/datalayer": "1.1.*",
+    "league/plates": "v4.0.0-alpha"
+  }
+}
