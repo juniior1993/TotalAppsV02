@@ -48,7 +48,7 @@
             </div>
             <div class="container-items">
                 <div class="item">
-                    <i class="fas fa-file-invoice-dollar" title="Financeiro"></i>
+                    <i class="fas fa-bug" title="Testes"></i>
                     <div class="text-menu">Testes</div>
                 </div>
                 <div class="sub-items" id="sub-testes">

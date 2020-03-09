@@ -37,8 +37,8 @@
             </div>
             <div class="box-content-body">
                 <div class="chart">
-                    <div class="box-content w20">
-                        <canvas id="chart-statusComercial" width="300" height="300"></canvas>
+                    <div class="box-content" style="width: 300px">
+                        <canvas id="chart-statusComercial" width="300" height="200"></canvas>
                     </div>
                 </div>
             </div>
@@ -79,6 +79,8 @@
                                 <option>Não</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="row-form">
                         <div class="form-group">
                             <label class="label" for="tipo">De</label>
                             <select class="basic">
@@ -102,6 +104,9 @@
     </div>
     <div class="row">
         <div class="box-content w100">
+            <div class="box-content-header">
+                Ultimos Orcamentos Realizados.
+            </div>
             <div class="box-content-body">
                 <table class="table t-100 responsive">
                     <thead>
@@ -123,7 +128,7 @@
                         <?php /** @var \Source\Models\ListOrcamentos $listOrcamentos */ ?>
                         <?php /** @var \Source\Models\Comercial $projeto */ ?>
                         <?php foreach ($listOrcamentos->listOrcamentos() as $projeto): ?>
-                            <tr>
+                            <tr class="<?= $projeto->statusComercial(); ?>">
                                 <?php $idioma = $projeto->idiomas(); ?>
                                 <td class="center"><?= $projeto->COM_IndexProjeto; ?></td>
                                 <td class="center"><?= $projeto->consultor()->REC_ApelidoRecurso; ?></td>
@@ -159,6 +164,7 @@
 
         let url = $("#box-result").data().action;
         Chart.defaults.global.defaultFontColor = '#74788D';
+        Chart.defaults.global.defaultFontSize = 10;
 
         $.ajax({
             url: url,
@@ -170,23 +176,25 @@
             },
             success: function (response) {
 
+                let total = response['statusComercial']['Aprovado'] + response['statusComercial']['Recusada'] + response['statusComercial']['Cancelado'] + response['statusComercial']['Proposta'];
+
                 var dataSet = {
                     'datasets': [{
                         'data': [
                             response['statusComercial']['Aprovado'],
                             response['statusComercial']['Recusada'],
-                            response['statusComercial']['Proposta'],
-                            response['statusComercial']['Cancelado']
+                            response['statusComercial']['Cancelado'],
+                            response['statusComercial']['Proposta']
                         ],
-                        backgroundColor: ["blue", "red", "yellow", "purple"],
+                        backgroundColor: ["greenyellow", "orange", "red", "#103ccc"],
                         borderColor: "#1A1E27"
                     }],
 
                     'labels': [
-                        'Aprovado',
-                        'Recusado',
-                        'Cancelado',
-                        'Proposta'
+                        'Aprovado (' + ((response['statusComercial']['Aprovado'] / total) * 100).toFixed(2) + '%)',
+                        'Recusado (' + ((response['statusComercial']['Recusada'] / total) * 100).toFixed(2) + '%)',
+                        'Cancelado (' + ((response['statusComercial']['Cancelado'] / total) * 100).toFixed(2) + '%)',
+                        'Proposta (' + ((response['statusComercial']['Cancelado'] / total) * 100).toFixed(2) + '%)'
                     ]
                 };
 
@@ -194,7 +202,9 @@
                 var myPieChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: dataSet,
-                    options: {}
+                    options: {
+                        responsive: false
+                    }
                 });
                 console.log(response['statusComercial']);
             },

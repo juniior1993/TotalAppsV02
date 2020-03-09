@@ -259,6 +259,10 @@ div.right-bar i {
     width: 9.9%;
 }
 
+.wauto {
+    width: auto !important;
+}
+
 .row {
     display: flex;
     justify-content: space-between;
@@ -307,8 +311,27 @@ table tr td.center {
 }
 
 .table tr:hover {
-    background-color: #363c49;
+    opacity: .7;
+    /*background-color: #363c49 !important;*/
 }
+
+table.table tr.Proposta {
+    background-color: #103ccc;
+}
+
+table.table tr.Aprovado {
+    background-color: greenyellow;
+    color: black;
+}
+
+table.table tr.Cancelado {
+    background-color: red;
+}
+
+table.table tr.Recusado {
+    background-color: orange;
+}
+
 
 /*
 * BUTTON

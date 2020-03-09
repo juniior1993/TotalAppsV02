@@ -25,7 +25,7 @@
     <script>
         window.onload = function () {
 
-            $("#carregaLoader").addClass("loader-content");
+            // $("#carregaLoader").addClass("loader-content");
 
             let url = `http://localhost/template_total/api_relatorios/chartOrcamento`;
 
