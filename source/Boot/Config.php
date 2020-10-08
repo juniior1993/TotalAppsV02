@@ -35,11 +35,11 @@ define("DATA_LAYER_CONFIG", [
  */
 define("DATA_LAYER_CONFIG_TOTAL", [
     "driver" => "mysql",
-    "host" => "54.233.240.58",
-    "port" => "3306",
+    "host" => "********",
+    "port" => "*****",
     "dbname" => "totaltranslator",
     "username" => "leitura",
-    "passwd" => "(_leitura963_)",
+    "passwd" => "******",
     "options" => [
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
